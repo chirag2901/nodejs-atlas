@@ -1,0 +1,90 @@
+
+db.users.insert({_id:123456,firstName:"Vivek",email:"vivek@gmail.com"})
+db.users.save({_id:123456,firstName:"Vivek",email:"vivek@gmail.com"})
+
+db.users.insert([
+{firstName:"ROhan",email:"rohan@gmail.com",password:"rohan123"},
+{firstName:"Chirag",email:"chirag@gmail.com",password:"pass123"}
+])
+
+
+db.users.save([
+{firstName:"Ajay",email:"akjay@gmail.com",password:"ajaay123"},
+{firstName:"Vedant",email:"ved@gmail.com",password:"ved123"}
+])
+ObjectId("622648dfda3dfc0ed756983e")
+db.users.save({_id:ObjectId("622648dfda3dfc0ed756983e"),firstName:"Vedant",email:"ved@gmail.com",password:"ved123"})
+
+db.users.insertOne({firstName:"Himang",email:"himang@gmail.com",password:"ved123"})
+
+ db.users.find(
+{ $or:
+	[{firstName:"Chirag"},{firstName:"Vedant"}]
+}	
+).pretty()
+
+
+db.users.find({},{_id:0,firstName:1})-->first json : filter , second json : projection 
+db.users.update(
+	{	
+			_id:123456
+	},
+	{
+	firstName:"VivekOberoi"
+	}
+)
+
+
+set use in update 
+
+db.users.update(
+	{	
+			_id:123456
+	},
+	{$set:{
+			firstName:"VivekOberoi"
+
+		}
+	}
+)
+
+findOneAndUpdate
+db.users.findOneAndUpdate({_id:123456},
+	{
+	$set:{
+	firstName:"VivekKkk"
+	}
+	}
+)
+
+
+remove
+db.users.remove({_id:123456})
+db.users.remove({firstName:"VivekKkk"},1)
+
+limit skip
+db.users.find().limit(5) show first five 
+ 
+db.users.find().limit(5).skip(5) skip first five then 5 will show after that 
+
+
+sort()
+
+db.users.find().sort({firstName:1})
+
+db.users.find({},{_id:0,firstName:1}).sort({firstName:1})
+
+
+aggregate 
+
+db.users.aggregate([
+	{
+		$group:
+			{
+				_id:"$type",
+				totalUsers:{
+					$sum: 1
+				}
+			}
+	}
+])
