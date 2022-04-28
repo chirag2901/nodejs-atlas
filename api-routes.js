@@ -17,6 +17,7 @@ const { route } = require("express/lib/application")
 // router.delete("/user2/:userId",usercontroller.deleteUser2)
 // router.put("/user",usercontroller.updateUser)
 router.post("/users",dbUserconrtroller.signupdb)
+*********************************
 router.get("/users",dbUserconrtroller.getAllusers)
 router.delete("/users/:userId",dbUserconrtroller.deleteUser)
 router.get("/users/:userId",dbUserconrtroller.getUserById)
